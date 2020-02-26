@@ -1,0 +1,26 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: StatefulSet
+metadata:
+  name: reactbdarija-api
+  labels:
+    app: reactbdarija
+spec:
+  selector:
+    matchLabels:
+      app: reactbdarija
+      tier: api
+  serviceName: reactbdarija-api-svc
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: reactbdarija
+        tier: api
+    spec:
+      containers:
+      - image: techbdarija/reactbdarija-api
+        name: reactbdarija-container
+        ports:
+        - containerPort: 3030
+          name: api
+        
